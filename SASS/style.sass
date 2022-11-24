@@ -3,6 +3,7 @@ body
     font-family: Helvetica, sans-serif
     text-align: center
     box-sizing: border-box
+    cursor: default
     background-color: #56c4c5
 
 /* TITLE */
@@ -14,7 +15,6 @@ body
         font-size: 3rem
         font-weight: bold
         color: #333
-        cursor-pointer: default
 /* BUTTONS  */
 #btn-container
     display: flex
@@ -72,17 +72,17 @@ body
     display: flex
     justify-content: center
     align-items: center
-    .x, .o
-        font-family: Helvetica, sans-serif
-        displa: inline-block
-    .x
-        font-size: 65px
-        color: red
-    .o
-        width: 50px
-        height: 50px
-        border-radius: 50%
-        border: 5px solid blue
+.x, .o
+    font-family: Helvetica, sans-serif
+    display: inline-block
+.x
+    font-size: 65px
+    color: red
+.o
+    width: 50px
+    height: 50px
+    border-radius: 50%
+    border: 5px solid blue
 
 /* SCOREBOARD */
 #scoreboard-container
@@ -104,7 +104,7 @@ body
         display: flex
         flex-direction: row
         align-items: center
-        fonte-weight: bold
+        font-weight: bold
         font-size: 1.5rem
         #x-scoreboard,
         #o-scoreboard
@@ -137,3 +137,4 @@ body
     padding: 20px
     font-family: Helvetica, sans-serif
     font-weight: bold
+    display: none

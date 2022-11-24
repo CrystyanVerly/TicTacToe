@@ -3,6 +3,7 @@ body {
   font-family: Helvetica, sans-serif;
   text-align: center;
   box-sizing: border-box;
+  cursor: default;
   background-color: #56c4c5;
 }
 
@@ -16,7 +17,6 @@ body {
   font-size: 3rem;
   font-weight: bold;
   color: #333;
-  cursor-pointer: default;
 }
 
 /* BUTTONS  */
@@ -85,15 +85,18 @@ body {
   justify-content: center;
   align-items: center;
 }
-#box-elements .x, #box-elements .o {
+
+.x, .o {
   font-family: Helvetica, sans-serif;
-  displa: inline-block;
+  display: inline-block;
 }
-#box-elements .x {
+
+.x {
   font-size: 65px;
   color: red;
 }
-#box-elements .o {
+
+.o {
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -123,7 +126,7 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  fonte-weight: bold;
+  font-weight: bold;
   font-size: 1.5rem;
 }
 #scoreboard-container .scoreboard-box #x-scoreboard,
@@ -161,6 +164,7 @@ body {
   padding: 20px;
   font-family: Helvetica, sans-serif;
   font-weight: bold;
+  display: none;
 }
 
 /*# sourceMappingURL=style.css.map */
