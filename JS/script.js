@@ -38,6 +38,7 @@ for (let i = 0; i < boxes.length; i++) {
       } else {
         player2++;
       }
+      // CHECA QUEM VENCEU
     }
   });
 }
