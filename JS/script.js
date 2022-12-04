@@ -233,12 +233,12 @@ function declareWinner(winner) {
   // ESCONDE MENSAGEM
   setTimeout(function () {
     messageContainer.classList.add("hide");
-  }, 1000);
+  }, 1500);
   // ZERA A PARTIDA:
   player1 = 0;
   player2 = 0;
   // REMOVER O X e o O
-  let boxesToRemove = document.querySelectorAll(".box div");
+  let boxesToRemove = document.querySelectorAll(".square div");
   for (let i = 0; i < boxesToRemove.length; i++) {
     boxesToRemove[i].parentNode.removeChild(boxesToRemove[i]);
   }
