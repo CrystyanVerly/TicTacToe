@@ -4,6 +4,7 @@ let boxes = document.querySelectorAll(".square");
 let buttons = document.querySelectorAll("#btn-container");
 let messageContainer = document.querySelector("#message");
 let messageText = document.querySelector("#message p");
+let btnIA = document.querySelector("#against-ia");
 let secondPlayer;
 
 // CONTADOR DE JOGADAS
@@ -35,12 +36,33 @@ for (let i = 0; i < boxes.length; i++) {
       // COMPUTAR JOGADA
       if (player1 == player2) {
         player1++;
+        if (secondPlayer == btnIA) {
+          // FUNÇÃO QUE INCREMENTA A JOGADA
+          computerPLay();
+          player2++;
+        }
       } else {
         player2++;
       }
       // CHECA QUEM VENCEU
       checkWinCondition();
     }
+  });
+}
+
+// VERIFICA SE SAO 2 PLAYER OU CONTRA IA
+
+for (let i = 0; i < buttons.length; i++) {
+  buttons[i].addEventListener("click", function () {
+    
+    secondPlayer = btnIA;
+    for (let j = 0; j < buttons.length; j++) {
+      buttons[j].style.display = "none";
+    }
+    setTimeout(function () {
+      let container = document.querySelector(".container-velha");
+      container.classList.remove("hide");
+    }, 500);
   });
 }
 
@@ -241,5 +263,28 @@ function declareWinner(winner) {
   let boxesToRemove = document.querySelectorAll(".square div");
   for (let i = 0; i < boxesToRemove.length; i++) {
     boxesToRemove[i].parentNode.removeChild(boxesToRemove[i]);
+  }
+}
+// EXECUTA  A LÓGICA DA JOGADA DO CPU
+function computerPLay() {
+  let cloneO = o.cloneNode(True);
+  counter = 0;
+  filled = 0;
+  for (let i = 0; i < boxes.length; i++) {
+    let randomNumber = Math.floor(Math.random() * 5);
+    // SÓ PREENCHE SE ESTIVER VAZIO O FILHO
+    if (boxes[i].childNodes[0] == undefined) {
+      if (randomNumber <= 1) {
+        boxes[i].appendChild(cloneO);
+        counter++;
+        break;
+      }
+    // CHECA QUANTAS ESTÃO PREENCHIDAS  
+    } else {
+      filled++;
+    }
+  }
+  if(counter == 0 && filled < 9) {
+    computerPLay();
   }
 }
