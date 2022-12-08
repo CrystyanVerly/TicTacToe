@@ -1,34 +1,20 @@
 let x = document.querySelector(".x");
 let o = document.querySelector(".o");
 let boxes = document.querySelectorAll(".square");
-let buttons = document.querySelectorAll("#btn-container");
+let buttons = document.querySelectorAll("#btn-container button");
 let messageContainer = document.querySelector("#message");
 let messageText = document.querySelector("#message p");
-let btnIA = document.querySelector("#against-ia");
 let secondPlayer;
 
 // CONTADOR DE JOGADAS
 let player1 = 0;
 let player2 = 0;
 
-// VERIFICA QUEM VAI JOGAR
-function checkEl(player1, player2) {
-  if (player1 == player2) {
-    // x
-    el = x;
-  } else {
-    // o
-    el = o;
-  }
-  return el;
-}
-
 // EVENTO DE CLIQUE NAS BOXES
 for (let i = 0; i < boxes.length; i++) {
   // QUANDO CLICA NA BOX
   boxes[i].addEventListener("click", function () {
     let el = checkEl(player1, player2);
-
     // VERIFICA SE JA TEM X OU O
     if (this.childNodes.length == 0) {
       let cloneEl = el.cloneNode(true);
@@ -36,9 +22,9 @@ for (let i = 0; i < boxes.length; i++) {
       // COMPUTAR JOGADA
       if (player1 == player2) {
         player1++;
-        if (secondPlayer == btnIA) {
-          // FUNÇÃO QUE INCREMENTA A JOGADA
-          computerPLay();
+        // JOGADA IA
+        if (secondPlayer == "against-ia") {
+          computerPlay();
           player2++;
         }
       } else {
@@ -50,20 +36,16 @@ for (let i = 0; i < boxes.length; i++) {
   });
 }
 
-// VERIFICA SE SAO 2 PLAYER OU CONTRA IA
-
-for (let i = 0; i < buttons.length; i++) {
-  buttons[i].addEventListener("click", function () {
-    
-    secondPlayer = btnIA;
-    for (let j = 0; j < buttons.length; j++) {
-      buttons[j].style.display = "none";
-    }
-    setTimeout(function () {
-      let container = document.querySelector(".container-velha");
-      container.classList.remove("hide");
-    }, 500);
-  });
+// VERIFICA QUEM VAI JOGAR
+function checkEl(player1, player2) {
+  if (player1 == player2) {
+    // x
+    el = x;
+  } else {
+    // o
+    el = o;
+  }
+  return el;
 }
 
 // DETECTA GANHADOR (8 possibilidades de vitória)
@@ -265,11 +247,29 @@ function declareWinner(winner) {
     boxesToRemove[i].parentNode.removeChild(boxesToRemove[i]);
   }
 }
+
+// VERIFICA SE SAO 2 PLAYER OU CONTRA IA
+for (let i = 0; i < buttons.length; i++) {
+  buttons[i].addEventListener("click", function () {
+    secondPlayer = this.getAttribute("id");
+
+    for (j = 0; j < buttons.length; j++) {
+      buttons[j].style.display = "none";
+    }
+
+    setTimeout(function () {
+      let container = document.querySelector(".container-velha");
+      container.classList.remove("hide");
+    }, 500);
+  });
+}
+
 // EXECUTA  A LÓGICA DA JOGADA DO CPU
-function computerPLay() {
-  let cloneO = o.cloneNode(True);
+function computerPlay() {
+  let cloneO = o.cloneNode(true);
   counter = 0;
   filled = 0;
+
   for (let i = 0; i < boxes.length; i++) {
     let randomNumber = Math.floor(Math.random() * 5);
     // SÓ PREENCHE SE ESTIVER VAZIO O FILHO
@@ -279,12 +279,12 @@ function computerPLay() {
         counter++;
         break;
       }
-    // CHECA QUANTAS ESTÃO PREENCHIDAS  
+      // CHECA QUANTAS ESTÃO PREENCHIDAS
     } else {
       filled++;
     }
   }
-  if(counter == 0 && filled < 9) {
-    computerPLay();
+  if (counter == 0 && filled < 9) {
+    computerPlay();
   }
 }
